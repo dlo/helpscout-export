@@ -1,0 +1,43 @@
+erDiagram
+
+  customer {
+  }
+
+  mailbox {
+  }
+
+  tag {
+  }
+
+  user {
+  }
+
+  email {
+  }
+
+  phone {
+  }
+
+  social_profile {
+  }
+
+  thread {
+  }
+
+  website {
+  }
+
+  workflow {
+  }
+
+  customer ||--o{ address : "foreign key"
+  customer ||--o{ chat : "foreign key"
+  customer ||--o{ conversation : "foreign key"
+  customer ||--o{ email : "foreign key"
+  customer ||--o{ phone : "foreign key"
+  customer ||--o{ social_profile : "foreign key"
+  customer ||--o{ thread : "foreign key"
+  customer ||--o{ website : "foreign key"
+  mailbox ||--o{ workflow : "foreign key"
+  user ||--o{ conversation : "foreign key"
+  user ||--o{ thread : "foreign key"
