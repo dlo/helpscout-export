@@ -99,7 +99,7 @@ class HelpScout:
                                             queue[k].append(v["href"])
 
                 for subendpoint, urls in queue.items():
-                    os.makedirs(subendpoint, exist_ok=True)
+                    os.makedirs("{}/{}".format(FOLDER, subendpoint), exist_ok=True)
                     for url in urls:
                         filename = generate_filename(subendpoint, url)
                         if os.path.exists(filename):
