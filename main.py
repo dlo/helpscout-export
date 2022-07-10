@@ -403,17 +403,19 @@ embedded_data: dict = {
 }
 
 if __name__ == "__main__":
-    print(sys.argv)
     if sys.argv[1] == 'download':
         token = get_auth_token()
         hs = HelpScout(token)
         hs.download_all_data()
     elif sys.argv[1] == 'import':
         conn = sqlite3.connect("helpscout.db")
+
+        # Drop and re-create the DB
         with open("schema.sql") as f:
             with conn:
                 conn.executescript(f.read())
 
+        # Traverse the directory tree and import all files with embedded data in payloads
         queue = []
         for filename in glob.glob("{}/*/*".format(FOLDER)):
             with open(filename) as f:
@@ -441,6 +443,7 @@ if __name__ == "__main__":
                                             )
                                         )
 
+        # Import all queued data into the database
         for table, fields in queue:
             if not fields:
                 continue
